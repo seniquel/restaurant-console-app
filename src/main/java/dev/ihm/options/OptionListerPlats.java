@@ -27,7 +27,7 @@ public class OptionListerPlats implements IOptionMenu {
     }
 
 	@Override
-	public int getCommande() {
+	public int getPoids() {
 		return 1;
 	}
 }

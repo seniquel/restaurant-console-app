@@ -49,7 +49,7 @@ public class OptionAjouterPlat implements IOptionMenu {
     }
 
 	@Override
-	public int getCommande() {
+	public int getPoids() {
 		return 2;
 	}
 }
