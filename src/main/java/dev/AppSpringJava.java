@@ -12,7 +12,7 @@ public class AppSpringJava {
 	public static void main(String[] args) {
 		
 		// Création du contexte Spring à partir d'une configuration Java
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 		
 		//définition des profils actifs
 		context.getEnvironment().setActiveProfiles("memoire","V2");
