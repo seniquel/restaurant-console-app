@@ -5,8 +5,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 
-import javax.rmi.CORBA.Util;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +12,12 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import dev.dao.PlatDaoMemoire;
 import dev.entite.Plat;
 import dev.exception.PlatException;
 
-//@SpringJUnitConfig(classes = {dev.service.PlatServiceVersion2.class, dev.dao.PlatDaoMemoire.class, Util.class})
-@ContextConfiguration(classes = {dev.service.PlatServiceVersion2.class, dev.dao.PlatDaoMemoire.class, Util.class})
+//@SpringJUnitConfig(classes = {PlatServiceVersion2.class, PlatDaoMemoire.class})
+@ContextConfiguration(classes = {PlatServiceVersion2.class, PlatDaoMemoire.class})
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles({"memoire","V2"})
 public class PlatServiceVersion2Test {
@@ -38,6 +37,6 @@ public class PlatServiceVersion2Test {
 	void ajouterPlatInvalide() {
 		assertThatThrownBy(() -> service.ajouterPlat("nem", 50))
 			.isInstanceOf(PlatException.class)
-			.hasMessage("un plat doit avoir un nom de plus de 5 caractères", "le prix d'un plat doit être supérieur à 10 €");
+			.hasMessage("un plat doit avoir un nom de plus de 5 caractères");
 	}
 }

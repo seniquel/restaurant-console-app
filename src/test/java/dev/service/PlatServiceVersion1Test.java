@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -24,24 +25,14 @@ public class PlatServiceVersion1Test {
 	
 	@Test
 	void ajouterPlatNomInvalide() {
-		Throwable thrown = null;
-		try {
-			platService.ajouterPlat("blé", 600);
-		} catch (Exception e) {
-			thrown = e;
-		}
-		assertThat(thrown).isInstanceOf(PlatException.class);
+		assertThatThrownBy(() -> platService.ajouterPlat("blé", 600)).isInstanceOf(PlatException.class);
 	}
 	
 	@Test
 	void ajouterPlatPrixInvalide() {
-		Throwable thrown = null;
-		try {
-			platService.ajouterPlat("grain de riz", 20);
-		} catch (Exception e) {
-			thrown = e;
-		}
-		assertThat(thrown).isInstanceOf(PlatException.class);	
+		// version JUnit 5
+		Assertions.assertThrows(PlatException.class, 
+				() -> platService.ajouterPlat("grain de riz", 20));
 	}
 	
 	@Test
