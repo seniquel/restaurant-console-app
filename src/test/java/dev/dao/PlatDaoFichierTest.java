@@ -31,6 +31,7 @@ public class PlatDaoFichierTest {
 		assertThat(resultats).hasSize(1);
 	}
 	
+	@Test
 	void ajouterPlatSauvegarde2() {
 		List<Plat> resultats = dao.listerPlats();
 		assertThat(resultats).extracting(Plat::getNom).containsExactly("plat du jour");
