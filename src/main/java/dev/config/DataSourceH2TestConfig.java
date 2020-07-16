@@ -9,7 +9,7 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
 @Configuration
-@Profile("jdbc-h2")
+@Profile("jdbc & h2")
 public class DataSourceH2TestConfig {
 
 	@Bean

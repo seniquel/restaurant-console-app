@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 @Configuration
-@Profile("jdbc")
+@Profile("jdbc & !h2")
 public class DataSourceConfig {
 
 	@Bean

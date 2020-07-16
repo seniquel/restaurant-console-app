@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 @Configuration
 @Import(DataSourceH2TestConfig.class)
-@Profile("jdbc-h2")
+@Profile("jdbc & h2")
 public class JdbcTestConfig {
 
 	@Bean
