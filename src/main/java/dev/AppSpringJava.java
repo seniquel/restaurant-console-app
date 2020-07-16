@@ -15,7 +15,7 @@ public class AppSpringJava {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 		
 		//définition des profils actifs
-		context.getEnvironment().setActiveProfiles("fichier","V2");
+		context.getEnvironment().setActiveProfiles("jdbc","V2");
 		context.register(AppConfig.class);
 		context.refresh();
 		
