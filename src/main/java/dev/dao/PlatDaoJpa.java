@@ -6,10 +6,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import dev.entite.Plat;
 
+@Repository
 @Profile("jpa")
 public class PlatDaoJpa implements IPlatDao {
 	
@@ -25,8 +27,8 @@ public class PlatDaoJpa implements IPlatDao {
 	@Transactional
 	public void ajouterPlat(String nomPlat, Integer prixPlat) {
 		Plat plat = new Plat();
-		plat.setNom("jus de pieds");
-		plat.setPrixEnCentimesEuros(1200);
+		plat.setNom(nomPlat);
+		plat.setPrixEnCentimesEuros(prixPlat);
 		em.persist(plat);
 	}
 
