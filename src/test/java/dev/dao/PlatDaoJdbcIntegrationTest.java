@@ -4,11 +4,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
@@ -17,7 +17,7 @@ import dev.config.JdbcTestConfig;
 import dev.entite.Plat;
 
 @SpringJUnitConfig(classes = {PlatDaoJdbc.class, DataSourceH2TestConfig.class, JdbcTestConfig.class})
-@TestPropertySource("classpath:test.properties")
+@ActiveProfiles({"jdbc","h2"})
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class PlatDaoJdbcIntegrationTest {
 
@@ -25,7 +25,7 @@ public class PlatDaoJdbcIntegrationTest {
 	private PlatDaoJdbc dao;
 
 	@Autowired
-	private JdbcTemplate jdbcTemplate;
+	private JdbcTemplate jdbc;
 	
 	@Test
 	void listerPlatsNonVide() {
@@ -36,7 +36,7 @@ public class PlatDaoJdbcIntegrationTest {
 	@Test
 	void ajouterPlatValide() {
 		dao.ajouterPlat("Gloubiboulga", 1500);
-		List<Plat> resultat = jdbcTemplate.query("select * from PLAT where NOM='Gloubiboulga' and PRIX=1500", new PlatMapper());
+		List<Plat> resultat = jdbc.query("select * from PLAT where NOM='Gloubiboulga' and PRIX=1500", new PlatMapper());
 		assertThat(resultat).isNotEmpty();
 	}
 
