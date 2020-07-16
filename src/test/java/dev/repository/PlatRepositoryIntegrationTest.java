@@ -64,7 +64,25 @@ public class PlatRepositoryIntegrationTest {
 		assertThat(plat.getPrixEnCentimesEuros()).isEqualTo(1300);
 	}
 	
+	@Test
+	public void testCount() {
+		assertThat(repository.count()).isEqualTo(6);
+	}
 	
+	@Test
+	public void testFindByPrix() {
+		List<Plat> plats = repository.findByPrixEnCentimesEuros(1300);
+		assertThat(plats).hasSize(2);
+	}
 	
+	@Test
+	public void testAvgPrix() {
+		double res = repository.avgPrix(1500);
+		assertThat(res).isEqualTo(2050); //avg(1600,2500) = 2050
+	}
 	
+	@Test
+	public void testFindByNomWithIngredients() {
+		assertThat(repository.FindIngredientsByNom("Moules-frites")).hasSize(6);
+	}
 }

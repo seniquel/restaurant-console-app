@@ -22,7 +22,11 @@ public class Ingredient {
     @Column(name = "NOM")
     private String nom;
     @ManyToMany(mappedBy = "ingredients")
-    private List<Plat> plats = new ArrayList<>();
+    private List<Plat> plats = new ArrayList<Plat>();
+    
+    public Ingredient() {
+    	
+    }
     
 	public Ingredient(String nom) {
 		this.nom = nom;
