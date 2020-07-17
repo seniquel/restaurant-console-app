@@ -2,6 +2,7 @@ package dev.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import dev.config.JpaTestConfig;
 import dev.entite.Plat;
 
-@SpringJUnitConfig(classes = {PlatRepository.class, JpaTestConfig.class})
+@SpringJUnitConfig(classes = {JpaTestConfig.class})
 @DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
 @ActiveProfiles("jpa")
 public class PlatRepositoryIntegrationTest {
@@ -35,13 +36,15 @@ public class PlatRepositoryIntegrationTest {
 	@Test
 	public void testFindAllSortAsc() {
 		List<Plat> plats = repository.findAll(Sort.by(Sort.Direction.ASC, "prixEnCentimesEuros"));
-		assertThat(plats).isSortedAccordingTo((p1,p2)->p1.getPrixEnCentimesEuros().compareTo(p2.getPrixEnCentimesEuros()));
+		//assertThat(plats).isSortedAccordingTo((p1,p2)->p1.getPrixEnCentimesEuros().compareTo(p2.getPrixEnCentimesEuros()));
+		assertThat(plats).isSortedAccordingTo(Comparator.comparing(Plat::getPrixEnCentimesEuros));
 	}
 	
 	@Test
 	public void testFindAllSortDesc() {
 		List<Plat> plats = repository.findAll(Sort.by(Sort.Direction.DESC, "prixEnCentimesEuros"));
-		assertThat(plats).isSortedAccordingTo((p1,p2)->p2.getPrixEnCentimesEuros().compareTo(p1.getPrixEnCentimesEuros()));	
+		//assertThat(plats).isSortedAccordingTo((p1,p2)->p2.getPrixEnCentimesEuros().compareTo(p1.getPrixEnCentimesEuros()));	
+		assertThat(plats).isSortedAccordingTo(Comparator.comparing(Plat::getPrixEnCentimesEuros).reversed());
 	}
 	
 	@Test
@@ -87,7 +90,6 @@ public class PlatRepositoryIntegrationTest {
 	}
 	
 	@Test
-	@Transactional
 	public void testSave() {
 		Plat plat = new Plat("Tarte aux escargots",1200);
 		repository.save(plat);
