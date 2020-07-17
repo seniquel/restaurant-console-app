@@ -27,9 +27,9 @@ public class Plat {
     @Column(name = "PRIX")
     private Integer prixEnCentimesEuros;
     @ManyToMany
-    @JoinTable(name = "PLAT_INGREDIENT",
-    		joinColumns = @JoinColumn(name="ID_PLA",referencedColumnName = "ID"),
-    		inverseJoinColumns = @JoinColumn(name="ID_ING",referencedColumnName = "ID"))
+    @JoinTable(name = "plat_ingredient",
+    		joinColumns = @JoinColumn(name="plat_id",referencedColumnName = "ID"),
+    		inverseJoinColumns = @JoinColumn(name="ingredient_id",referencedColumnName = "ID"))
     private List<Ingredient> ingredients = new ArrayList<Ingredient>();
 
     public Plat() {
