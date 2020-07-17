@@ -2,7 +2,6 @@ package dev.ihm.options;
 
 import java.util.Scanner;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import dev.exception.PlatException;

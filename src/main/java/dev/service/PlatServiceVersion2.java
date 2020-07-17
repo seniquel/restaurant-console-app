@@ -3,7 +3,6 @@ package dev.service;
 import java.util.List;
 
 import org.springframework.context.annotation.Profile;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 import dev.dao.IPlatDao;

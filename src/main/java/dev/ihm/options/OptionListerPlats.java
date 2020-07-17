@@ -1,6 +1,5 @@
 package dev.ihm.options;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import dev.service.IPlatService;

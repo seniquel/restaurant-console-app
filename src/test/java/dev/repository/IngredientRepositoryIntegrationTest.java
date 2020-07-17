@@ -12,7 +12,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import dev.config.JpaTestConfig;
-import dev.entite.Ingredient;
 import dto.IngredientDto;
 
 @SpringJUnitConfig(classes = {IngredientRepository.class, JpaTestConfig.class})

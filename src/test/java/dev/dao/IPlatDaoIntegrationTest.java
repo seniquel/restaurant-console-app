@@ -1,17 +1,15 @@
 package dev.dao;
 
-import dev.config.JpaTestConfig;
-import dev.entite.Plat;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import dev.entite.Plat;
 
 // EMF + Gestion Tx + DataSource
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
