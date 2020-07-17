@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.ActiveProfiles;
@@ -78,11 +79,28 @@ public class PlatRepositoryIntegrationTest {
 	@Test
 	public void testAvgPrix() {
 		double res = repository.avgPrix(1500);
-		assertThat(res).isEqualTo(2050); //avg(1600,2500) = 2050
+		assertThat(res).isEqualTo(2050); //avg({1600,2500}) = 2050
 	}
 	
 	@Test
 	public void testFindByNomWithIngredients() {
-		assertThat(repository.FindIngredientsByNom("Moules-frites")).hasSize(6);
+		assertThat(repository.FindByNomWithIngredients("Moules-frites")).hasSize(6);
+	}
+	
+	@Test
+	@Transactional
+	public void testSave() {
+		Plat plat = new Plat("Tarte aux escargots",1200);
+		repository.save(plat);
+		assertThat(repository.findAll()).contains(plat);
+	}
+	
+	@Test
+	@Transactional
+	public void testChangerNom() {
+		repository.ChangerNomPlat("Magret de canard", "Confit de canard");
+		List<Plat> plats = repository.findAll();
+		assertThat(plats).extracting(Plat::getNom).contains("Confit de canard");
+		assertThat(plats).extracting(Plat::getNom).doesNotContain("Magret de canard");
 	}
 }
